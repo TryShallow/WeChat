@@ -1,0 +1,44 @@
+# -*- encoding: utf-8 -*-
+
+DEFAULT = -1
+
+CLT_HEART_BEAT = 1
+CLT_LOGIN = 10
+CLT_SEND_MSG = 11
+CLT_GET_MSG = 12
+CLT_GET_SESSION = 13
+CLT_GET_FRIEND = 14
+
+RSP_HEART_BEAT = 5
+RSP_LOGIN = 50
+RSP_SEND_MSG = 51
+RSP_GET_SESSION = 53
+RSP_GET_FRIEND = 54
+
+KEY_METHOD = "method"
+KEY_ACCOUNT = "account"
+KEY_PASSWORD = "password"
+KEY_STATUS = "status"
+KEY_ERROR_CODE = "error_code"
+KEY_USER_ID = "user_id"
+KEY_USER_ID_TO = "user_id_to"
+KEY_SESSION_ID = "session_id"
+KEY_COUNTER = "counter"
+KEY_SESSIONS = "sessions"
+KEY_MESSAGE_ID = "message_id"
+KEY_MESSAGE_TYPE = "message_type"
+KEY_MESSAGE_CONTENT = "message_content"
+KEY_FRIEND_ID = "friend_id"
+KEY_FRIENDS = "friends"
+
+VALUE_SUCCESS = "success"
+VALUE_ERROR = "error"
+VALUE_ERROR_FORMAT_ERROR = 1001
+VALUE_ERROR_IVALID_ACCOUNT = 2001
+VALUE_MESSAGE_TYPE_NORMAL = 0
+VALUE_MESSAGE_TYPE_ADD_BY_ACCOUNT = 1
+
+DB_HOST = "localhost"
+DB_USER = "root"
+DB_PASS = "root"
+DB_NAME = "wechat"
