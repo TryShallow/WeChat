@@ -3,6 +3,7 @@ import pymysql
 import const_value
 from session import Session
 from friend import Friend
+from message import Message
 
 class DbHelper:
     def __init__(self):
@@ -31,7 +32,7 @@ class DbHelper:
             sessions = []
             print(results)
             for res in results:
-                sessions.append(Session(res[0],res[1],res[2],res[3],res[4],res[5],res[6]))
+                sessions.append(Session(res[0], res[1], res[2], res[3], res[4], res[5], res[6]))
                 count += 1
                 print(sessions)
             return sessions, count
@@ -71,11 +72,22 @@ class DbHelper:
             results = cursor.fetchall()
             count = 0
             friends = []
-            print(results)
             for res in results:
-                friends.append(Friend(res[0],res[1],res[2],res[3],res[4]))
+                friends.append(Friend(res[0], res[1], res[2], res[3], res[4]))
                 count += 1
             return friends, count
+
+    def getMessage(self, userId, maxMessageId):
+        sql = "select * from `message` where (user_send=%d or user_recv=%d) and id>%d order by id desc" %(userId, userId, maxMessageId)
+        with self.db.cursor() as cursor:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            count = 0
+            messages = []
+            for res in results:
+                messages.append(Message(res[0], res[1], res[2], res[3], res[4], res[5]))
+                count += 1
+            return messages, count
 
 '''
 CREATE TABLE `user` (

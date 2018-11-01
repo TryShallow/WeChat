@@ -14,6 +14,7 @@ class MsgHandler:
             const_value.CLT_GET_SESSION: self.getSession,
             const_value.CLT_SEND_MSG: self.sendMessage,
             const_value.CLT_GET_FRIEND: self.getFriend,
+            const_value.CLT_GET_MSG: self.getMessage,
         }
 
     def handle(self, data, conn):
@@ -94,6 +95,7 @@ class MsgHandler:
         rspSend[const_value.KEY_USER_ID] = userIdTo
         rspSend[const_value.KEY_SESSION_ID] = lastRecv
         self.rspMsg(rspRecv, connRecv)
+
     '''
     {"method":14, "user_id":1, "friend_id":0}
     '''
@@ -107,3 +109,15 @@ class MsgHandler:
         rsp[const_value.KEY_FRIENDS] = friends
         self.rspMsg(rsp, conn)
 
+    '''
+    {"method":12, "user_id":1, "message_id":0}
+    '''
+    def getMessage(self, ctx, conn):
+        userId = ctx.get(const_value.KEY_USER_ID, const_value.DEFAULT)
+        maxMessageId = ctx.get(const_value.KEY_MESSAGE_ID, const_value.DEFAULT)
+        messages, count = self.db.getMessage(userId, maxMessageId)
+        rsp = {}
+        rsp[const_value.KEY_USER_ID] = userId
+        rsp[const_value.KEY_COUNTER] = count
+        rsp[const_value.KEY_MESSAGES] = messages
+        self.rspMsg(rsp, conn)

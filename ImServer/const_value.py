@@ -30,6 +30,7 @@ KEY_MESSAGE_TYPE = "message_type"
 KEY_MESSAGE_CONTENT = "message_content"
 KEY_FRIEND_ID = "friend_id"
 KEY_FRIENDS = "friends"
+KEY_MESSAGES = "messages"
 
 VALUE_SUCCESS = "success"
 VALUE_ERROR = "error"
