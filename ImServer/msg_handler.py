@@ -51,6 +51,7 @@ class MsgHandler:
         rsp[const_value.KEY_METHOD] = const_value.RSP_LOGIN
         userId = self.db.checkLogin(account, password)
         if -1 != userId:
+            rsp[const_value.KEY_USER_ID] = userId
             rsp[const_value.KEY_STATUS] = const_value.VALUE_SUCCESS
             self.userDict[userId] = conn
         else :
@@ -117,6 +118,7 @@ class MsgHandler:
         maxMessageId = ctx.get(const_value.KEY_MESSAGE_ID, const_value.DEFAULT)
         messages, count = self.db.getMessage(userId, maxMessageId)
         rsp = {}
+        rsp[const_value.KEY_METHOD] = const_value.RSP_GET_MSG
         rsp[const_value.KEY_USER_ID] = userId
         rsp[const_value.KEY_COUNTER] = count
         rsp[const_value.KEY_MESSAGES] = messages

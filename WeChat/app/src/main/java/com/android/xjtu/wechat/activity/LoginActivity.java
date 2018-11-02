@@ -12,18 +12,21 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.xjtu.wechat.dao.DbHelper;
 import com.android.xjtu.wechat.receiver.LoginReceiver;
 import com.android.xjtu.wechat.R;
 import com.android.xjtu.wechat.service.ChatBinder;
 import com.android.xjtu.wechat.service.ChatService;
+import com.android.xjtu.wechat.service.Constant;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
     private ChatService chatService;    //convenient for sending message to service
     private LoginReceiver loginReceiver;    //broadcast receiver
     private EditText edtAccount;
     private EditText edtPassword;
-
-    private String[] testAccount = new String[]{ "abc", "123" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +45,24 @@ public class LoginActivity extends AppCompatActivity {
     public void signIn(View view) {
         String account = edtAccount.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
-        if ("".equals(account) || "".equals(password) ||
+        /*if ("".equals(account) || "".equals(password) ||
                 !account.equals(testAccount[0]) || !password.equals(testAccount[1])) {
             Toast.makeText(this, "Invalid Account", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(this, "Login...", Toast.LENGTH_LONG).show();
+        }*/
+        if ("".equals(account) || "".equals(password)) {
+            Toast.makeText(this, "Invalid Account", Toast.LENGTH_LONG).show();
+            return;
+        }
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put(Constant.KEY_METHOD, Constant.CLT_LOGIN);
+            jsonObject.put(Constant.KEY_ACCOUNT, account);
+            jsonObject.put(Constant.KEY_PASSWORD, password);
+            chatService.execute(jsonObject);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 
@@ -63,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
                 //only to initialize chatService
                 chatService = ((ChatBinder)iBinder).getChatService();
+                ((GlobalValue)getApplication()).setChatService(chatService);
             }
 
             @Override
@@ -73,8 +90,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void registerReceiver() {
-        loginReceiver = new LoginReceiver();
-        IntentFilter intentFilter = new IntentFilter(ChatService.LOCAL_BROADCAST);
+        loginReceiver = new LoginReceiver(this);
+        IntentFilter intentFilter = new IntentFilter(Constant.LOCAL_BROADCAST);
         LocalBroadcastManager.getInstance(this).registerReceiver(loginReceiver, intentFilter);
     }
 
@@ -86,8 +103,24 @@ public class LoginActivity extends AppCompatActivity {
 
     //test broadcast
     public void sendBroadcast(View view) {
-        Bundle bundle = new Bundle();
-        bundle.putString("text", "test broadcast");
-        chatService.sendLocalBroadcast(bundle);
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("text", "test broadcast");
+            chatService.sendLocalBroadcast(jsonObject.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void testDb(View view) {
+        //dbHelper.testMessage();
+    }
+
+    public void setChatService() {
+
+    }
+
+    public ChatService getChatService() {
+        return chatService;
     }
 }

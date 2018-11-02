@@ -10,9 +10,11 @@
     <EditText
         android:id="@+id/edt_account"
         android:hint="Account"
+        android:text="abc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
+        android:text="123"
         android:id="@+id/edt_password"
         android:hint="Password"
         android:inputType="textPassword"
@@ -28,6 +30,12 @@
         android:onClick="sendBroadcast"
         android:textAllCaps="false"
         android:text="Send Broadcast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:onClick="testDb"
+        android:text="TestDb"
+        android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
