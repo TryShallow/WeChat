@@ -105,6 +105,7 @@ class MsgHandler:
         maxFriendId = ctx.get(const_value.KEY_FRIEND_ID, const_value.DEFAULT)
         friends, count = self.db.getFriend(userId, maxFriendId)
         rsp = {}
+        rsp[const_value.KEY_METHOD] = const_value.RSP_GET_FRIEND
         rsp[const_value.KEY_USER_ID] = userId
         rsp[const_value.KEY_COUNTER] = count
         rsp[const_value.KEY_FRIENDS] = friends

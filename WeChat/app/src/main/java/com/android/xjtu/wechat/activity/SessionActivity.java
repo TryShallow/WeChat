@@ -69,7 +69,7 @@ public class SessionActivity extends AppCompatActivity {
 
     public void registerSessionReceiver() {
         sessionReceiver = new SessionReceiver(this);
-        IntentFilter intentFilter = new IntentFilter(Constant.BROADCAST_DATA);
+        IntentFilter intentFilter = new IntentFilter(Constant.LOCAL_BROADCAST);
         LocalBroadcastManager.getInstance(this).registerReceiver(sessionReceiver, intentFilter);
     }
 
@@ -110,5 +110,17 @@ public class SessionActivity extends AppCompatActivity {
     public void enterChat(View view) {
         Intent intent = new Intent(this, ChatActivity.class);
         startActivity(intent);
+    }
+
+    public void getFriend(View view) {
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put(Constant.KEY_METHOD, Constant.CLT_GET_FRIEND);
+            jsonObject.put(Constant.KEY_USER_ID, 1);
+            jsonObject.put(Constant.KEY_FRIEND_ID, 0);
+            chatService.execute(jsonObject);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

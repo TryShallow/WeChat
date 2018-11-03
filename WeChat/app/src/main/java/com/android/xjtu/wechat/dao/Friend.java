@@ -4,6 +4,10 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.query.WhereCondition;
+import org.json.JSONObject;
+
+import java.sql.Timestamp;
 
 /**
  * Created by DELL on 2018/11/2.
@@ -34,6 +38,23 @@ public class Friend {
         this.userFriend = userFriend;
         this.addFlag = addFlag;
         this.createTime = createTime;
+    }
+    public static final String ID = "id";
+    public static final String USER_ID = "user_id";
+    public static final String USER_FRIEND = "user_friend";
+    public static final String ADD_FLAG = "add_flag";
+    public static final String CREATE_TIME = "create_time";
+
+    public Friend(JSONObject jsonObject) {
+        try {
+            this.id = jsonObject.getLong(ID);
+            this.userId = jsonObject.getLong(USER_ID);
+            this.userFriend = jsonObject.getLong(USER_FRIEND);
+            this.addFlag = jsonObject.getInt(ADD_FLAG);
+            this.createTime = Timestamp.valueOf(jsonObject.getString(CREATE_TIME)).getTime();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Generated(hash = 287143722)

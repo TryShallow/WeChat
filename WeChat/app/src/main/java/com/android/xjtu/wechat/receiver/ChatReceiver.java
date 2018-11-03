@@ -24,10 +24,11 @@ public class ChatReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String data = intent.getStringExtra(Constant.BROADCAST_DATA);
+        Log.i("chat", data);
         try {
             JSONObject jsonObject = new JSONObject(data);
             int method = jsonObject.getInt(Constant.KEY_METHOD);
-            Log.i("chat receiver", "" + method);
+            //Log.i("chat receiver", "" + method);
             if (method == Constant.RSP_GET_SESSION) {
                 JSONObject getMessage = new JSONObject();
                 getMessage.put(Constant.KEY_USER_ID, 1);
@@ -35,9 +36,8 @@ public class ChatReceiver extends BroadcastReceiver {
                 getMessage.put(Constant.KEY_METHOD, Constant.CLT_GET_MSG);
                 ((GlobalValue)chatActivity.getApplication()).getChatService().execute(getMessage);
             } else if (method == Constant.RSP_GET_MSG) {
-                Log.i("chat receiver", "" + jsonObject.getInt(Constant.KEY_COUNTER));
             } else if (method == Constant.RSP_SEND_MSG) {
-                Log.i("chat receiver", "" + jsonObject.toString());
+                chatActivity.getMessage();
             }
         } catch (Exception e) {
             e.printStackTrace();

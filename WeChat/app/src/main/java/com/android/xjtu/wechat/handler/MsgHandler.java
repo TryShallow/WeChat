@@ -22,6 +22,7 @@ public class MsgHandler {
         mapHandler.put(Constant.RSP_LOGIN, new Login(chatService));
         mapHandler.put(Constant.RSP_GET_MSG, new GetMessage(chatService));
         mapHandler.put(Constant.RSP_SEND_MSG, new SendMessage(chatService));
+        mapHandler.put(Constant.RSP_GET_FRIEND, new GetFriend(chatService));
     }
 
     public void handle(JSONObject jsonObject) {

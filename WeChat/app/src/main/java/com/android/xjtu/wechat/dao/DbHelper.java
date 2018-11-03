@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.android.xjtu.wechat.greendao.DaoMaster;
 import com.android.xjtu.wechat.greendao.DaoSession;
+import com.android.xjtu.wechat.greendao.FriendDao;
 import com.android.xjtu.wechat.greendao.MessageDao;
 import com.android.xjtu.wechat.greendao.SessionDao;
 import com.android.xjtu.wechat.service.Constant;
@@ -77,6 +78,13 @@ public class DbHelper {
         MessageDao messageDao = daoSession.getMessageDao();
         for (Message message : messages) {
             messageDao.insert(message);
+        }
+    }
+
+    public void storeFriends(List<Friend> friends) {
+        FriendDao friendDao = daoSession.getFriendDao();
+        for (Friend friend : friends) {
+            friendDao.insert(friend);
         }
     }
 }

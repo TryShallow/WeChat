@@ -29,6 +29,7 @@ public class LoginReceiver extends BroadcastReceiver {
         //the message is stored in bundle
         //write your own code to handle all message for service and update UI
         String data = intent.getStringExtra(Constant.BROADCAST_DATA);
+        Log.i("login", data);
         try {
             JSONObject jsonObject = new JSONObject(data);
             if (jsonObject.getInt(Constant.KEY_METHOD) != Constant.RSP_LOGIN)

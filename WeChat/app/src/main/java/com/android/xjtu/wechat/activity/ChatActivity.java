@@ -41,7 +41,19 @@ public class ChatActivity extends AppCompatActivity {
 
     public void registerChatReceiver() {
         ChatReceiver chatReceiver = new ChatReceiver(this);
-        IntentFilter intentFilter = new IntentFilter(Constant.BROADCAST_DATA);
+        IntentFilter intentFilter = new IntentFilter(Constant.LOCAL_BROADCAST);
         LocalBroadcastManager.getInstance(this).registerReceiver(chatReceiver, intentFilter);
+    }
+
+    public void getMessage() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put(Constant.KEY_METHOD, Constant.CLT_GET_MSG);
+            jsonObject.put(Constant.KEY_USER_ID, 1);
+            jsonObject.put(Constant.KEY_MESSAGE_ID, 0);
+            chatService.execute(jsonObject);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -7,6 +7,7 @@ import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
 
 import com.android.xjtu.wechat.dao.DbHelper;
+import com.android.xjtu.wechat.dao.Friend;
 import com.android.xjtu.wechat.dao.Message;
 import com.android.xjtu.wechat.dao.Session;
 
@@ -65,5 +66,9 @@ public class ChatService extends Service {
 
     public void storeMessages(List<Message> messages) {
         dbHelper.storeMessages(messages);
+    }
+
+    public void storeFriends(List<Friend> friends) {
+        dbHelper.storeFriends(friends);
     }
 }

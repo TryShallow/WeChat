@@ -13,6 +13,6 @@ class Friend:
             "id": self.id,
             "user_id": self.userId,
             "user_friend": self.userFriend,
-            "add_flag": self.createTime,
+            "add_flag": self.addFlag,
             "create_time": self.createTime.strftime('%Y-%m-%d %H:%M:%S')
         }
