@@ -36,7 +36,9 @@ public class ChatReceiver extends BroadcastReceiver {
                 getMessage.put(Constant.KEY_METHOD, Constant.CLT_GET_MSG);
                 ((GlobalValue)chatActivity.getApplication()).getChatService().execute(getMessage);
             } else if (method == Constant.RSP_GET_MSG) {
+                //
             } else if (method == Constant.RSP_SEND_MSG) {
+                //
                 chatActivity.getMessage();
             }
         } catch (Exception e) {
