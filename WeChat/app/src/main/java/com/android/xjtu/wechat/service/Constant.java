@@ -53,7 +53,7 @@ public class Constant {
     public static final String LOCAL_BROADCAST = "com.android.xjtu.wechat.LOCAL_BROADCAST";
     public static final String BROADCAST_DATA = "broadcast_data";
 
-    public static final String SERVER_ADDR = "192.168.0.102";
+    public static final String SERVER_ADDR = "192.168.10.137";
     public static final int SERVER_PORT = 8989;
 
 }
