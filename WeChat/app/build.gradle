@@ -17,7 +17,7 @@ android {
         }
     }
     greendao {
-        schemaVersion 4
+        schemaVersion 5
         daoPackage 'com.android.xjtu.wechat.greendao'
         targetGenDir 'src/main/java'
     }

@@ -34,6 +34,10 @@ public class DbHelper {
         db = devOpenHelper.getWritableDatabase();
         daoMaster = new DaoMaster(db);
         daoSession = daoMaster.newSession();
+
+        resetFriends();
+        resetMessages();
+        resetSessions();
     }
 
     public void testMessage() {
@@ -67,7 +71,7 @@ public class DbHelper {
                     cursor.getInt(3), cursor.getInt(4), cursor.getString(5), cursor.getInt(6)));
         }
         Log.i("session", "db sessions size " + sessions.size());
-        Log.i("session", sessions.get(0).getLastMsgContent());
+        //Log.i("session", sessions.get(0).getLastMsgContent());
         return sessions;
     }
 
@@ -121,10 +125,17 @@ public class DbHelper {
             messages.add(new Message(cursor.getLong(0), cursor.getLong(1), cursor.getLong(2),
                     cursor.getInt(3), cursor.getString(4), cursor.getLong(5)));
         }
+        if (messages.size() > 0) {
+            Log.i("chat test", messages.get(messages.size() - 1).getContent());
+        }
         return messages;
     }
 
     public void resetMessages() {
         daoSession.getMessageDao().deleteAll();
+    }
+
+    public void resetSessions() {
+        daoSession.getSessionDao().deleteAll();
     }
 }

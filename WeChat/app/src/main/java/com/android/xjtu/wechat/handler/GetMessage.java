@@ -26,7 +26,6 @@ public class GetMessage extends BaseHandler {
             int count = jsonObject.getInt(Constant.KEY_COUNTER);
             if (count <= 0)
                 return ;
-            chatService.sendLocalBroadcast(jsonObject.toString(), Constant.RSP_GET_MSG);
             List<Message> messages = new ArrayList<>();
             JSONArray jsonArray = jsonObject.getJSONArray(Constant.KEY_MESSAGES);
             long maxId = 0;
@@ -39,6 +38,7 @@ public class GetMessage extends BaseHandler {
             }
             chatService.getCacheInfo().setMaxMessageId(maxId);
             chatService.storeMessages(messages);
+            chatService.sendLocalBroadcast(jsonObject.toString(), Constant.RSP_GET_MSG);
         } catch (Exception e) {
             e.printStackTrace();
         }

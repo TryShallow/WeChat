@@ -37,8 +37,8 @@ public class ChatReceiver extends BroadcastReceiver {
             try {
                 JSONObject jsonObject = new JSONObject(data);
                 int count = jsonObject.getInt(Constant.KEY_COUNTER);
-                if (count <= 0)
-                    return;
+//                if (count <= 0)
+//                    return;
 //                JSONArray jsonArray = jsonObject.getJSONArray(Constant.KEY_MESSAGES);
 //                List<Msg> msgs = new ArrayList<>();
 //                for (int i = 0; i < count; i ++) {
@@ -47,7 +47,7 @@ public class ChatReceiver extends BroadcastReceiver {
 //                    msgs.add(new Msg(msgType, message.getContent()));
 //                }
                 chatActivity.initMsgs();
-                //chatActivity.updateMsg(msgs);
+//                chatActivity.updateMsg(msgs);
             } catch (Exception e) {
                 e.printStackTrace();
             }
