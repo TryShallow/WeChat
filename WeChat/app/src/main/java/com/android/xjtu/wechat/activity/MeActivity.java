@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.android.xjtu.wechat.R;
+import com.android.xjtu.wechat.service.ChatService;
 
 public class MeActivity extends AppCompatActivity {
 
@@ -23,7 +24,7 @@ public class MeActivity extends AppCompatActivity {
         editor.commit();
         Intent intent = new Intent();
         intent.setClass(this,LoginActivity.class);
-        this.finish();
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 }

@@ -53,7 +53,7 @@ public class ChatReceiver extends BroadcastReceiver {
             }
         } else if (method == Constant.RSP_SEND_MSG) {
             chatActivity.getMessages();
-            chatActivity.initMsgs();
+            //chatActivity.initMsgs();
         }
         /*
         try {

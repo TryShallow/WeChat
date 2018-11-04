@@ -34,7 +34,7 @@ public class SessionReceiver extends BroadcastReceiver {
         if (method == Constant.APP_INIT_CHAT_SERVICE) {
             sessionActivity.initSession();
             sessionActivity.updateSession();
-        } else if (method == Constant.RSP_GET_MSG){
+        } else if (method == Constant.RSP_GET_MSG){// || method == Constant.RSP_SEND_MSG){
             sessionActivity.updateSession();
         } else if (method == Constant.RSP_GET_SESSION) {
             try {

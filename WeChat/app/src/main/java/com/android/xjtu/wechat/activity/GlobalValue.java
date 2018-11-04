@@ -15,7 +15,16 @@ public class GlobalValue extends Application {
     private ChatService chatService;
     private ContactActivity contactActivity;
     private SessionActivity sessionActivity;
+    private SlideActivity slideActivity;
     private int currentPage;
+
+    public SlideActivity getSlideActivity() {
+        return slideActivity;
+    }
+
+    public void setSlideActivity(SlideActivity slideActivity) {
+        this.slideActivity = slideActivity;
+    }
 
     public SessionActivity getSessionActivity() {
         return sessionActivity;

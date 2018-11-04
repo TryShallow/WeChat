@@ -72,6 +72,7 @@ public class SlideActivity extends Activity {
         setContentView(R.layout.activity_slide);
 
         globalValue = (GlobalValue) getApplication();
+        globalValue.setSlideActivity(this);
         //registe a local broadcast receiver for login activity, for listening the message of back service
         //
         //run service
