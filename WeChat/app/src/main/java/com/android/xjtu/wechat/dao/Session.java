@@ -6,6 +6,7 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Unique;
 import org.json.JSONObject;
 
 import java.sql.Timestamp;
@@ -17,6 +18,7 @@ import java.sql.Timestamp;
 @Entity
 public class Session {
     @NotNull
+    @Unique
     private long id;
 
     @Property(nameInDb = "user_own")

@@ -6,6 +6,7 @@ import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Property;
 
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Unique;
 import org.json.JSONObject;
 
 import java.sql.Timestamp;
@@ -16,8 +17,8 @@ import java.sql.Timestamp;
 
 @Entity
 public class Message {
-    @Property(nameInDb = "id")
     @NotNull
+    @Unique
     private Long id;
 
     @Property(nameInDb = "user_send")

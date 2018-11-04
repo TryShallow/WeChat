@@ -44,7 +44,7 @@ public class FriendDao extends AbstractDao<Friend, Void> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"FRIEND\" (" + //
-                "\"ID\" INTEGER NOT NULL ," + // 0: id
+                "\"ID\" INTEGER NOT NULL UNIQUE ," + // 0: id
                 "\"user_id\" INTEGER NOT NULL ," + // 1: userId
                 "\"user_friend\" INTEGER NOT NULL ," + // 2: userFriend
                 "\"add_flag\" INTEGER NOT NULL ," + // 3: addFlag

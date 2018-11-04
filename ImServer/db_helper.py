@@ -24,7 +24,8 @@ class DbHelper:
         return -1
 
     def getSession(self, userId, sessionId):
-        sql = "select * from `session` where user_own=%d and id>%d and id in (select max(id) from `session` GROUP BY user_other)" %(userId, sessionId)
+        sql = "select * from session where id in (select max(id) from ( select * from `session` where user_own=%d and id>%d ) a group by a.user_other)" %(userId, sessionId)
+        #sql = "select * from `session` where user_own=%d and id>%d and id in (select max(id) from `session` GROUP BY user_other)" %(userId, sessionId)
         #sql = "select * from `session` where user_own=%d and id > %d order by id desc" %(userId, sessionId)
         with self.db.cursor() as cursor:
             cursor.execute(sql)
@@ -79,7 +80,7 @@ class DbHelper:
             return friends, count
 
     def getMessage(self, userId, maxMessageId):
-        sql = "select * from `message` where (user_send=%d or user_recv=%d) and id>%d order by id desc" %(userId, userId, maxMessageId)
+        sql = "select * from `message` where (user_send=%d or user_recv=%d) and id>%d order by id asc" %(userId, userId, maxMessageId)
         with self.db.cursor() as cursor:
             cursor.execute(sql)
             results = cursor.fetchall()

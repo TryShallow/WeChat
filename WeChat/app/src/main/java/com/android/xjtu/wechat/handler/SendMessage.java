@@ -1,7 +1,10 @@
 package com.android.xjtu.wechat.handler;
 
+import android.graphics.Color;
+
 import com.android.xjtu.wechat.activity.ChatActivity;
 import com.android.xjtu.wechat.service.ChatService;
+import com.android.xjtu.wechat.service.Constant;
 
 import org.json.JSONObject;
 
@@ -16,6 +19,6 @@ public class SendMessage extends BaseHandler {
 
     @Override
     public void handle(JSONObject jsonObject) {
-        chatService.sendLocalBroadcast(jsonObject.toString());
+        chatService.sendLocalBroadcast(jsonObject.toString(), Constant.RSP_SEND_MSG);
     }
 }

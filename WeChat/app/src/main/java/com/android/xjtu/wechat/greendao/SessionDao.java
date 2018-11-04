@@ -46,7 +46,7 @@ public class SessionDao extends AbstractDao<Session, Void> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"SESSION\" (" + //
-                "\"ID\" INTEGER NOT NULL ," + // 0: id
+                "\"ID\" INTEGER NOT NULL UNIQUE ," + // 0: id
                 "\"user_own\" INTEGER NOT NULL ," + // 1: userOwn
                 "\"user_other\" INTEGER NOT NULL ," + // 2: userOther
                 "\"send_flag\" INTEGER NOT NULL ," + // 3: sendFlag

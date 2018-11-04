@@ -3,6 +3,7 @@ package com.android.xjtu.wechat.handler;
 import android.support.v4.content.LocalBroadcastManager;
 
 import com.android.xjtu.wechat.service.ChatService;
+import com.android.xjtu.wechat.service.Constant;
 
 import org.json.JSONObject;
 
@@ -18,6 +19,6 @@ public class Login extends BaseHandler {
 
     @Override
     public void handle(JSONObject jsonObject) {
-        chatService.sendLocalBroadcast(jsonObject.toString());
+        chatService.sendLocalBroadcast(jsonObject.toString(), Constant.RSP_LOGIN);
     }
 }

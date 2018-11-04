@@ -6,6 +6,9 @@ package com.android.xjtu.wechat.service;
 
 public class Constant {
     public static final int DEFAULT = -1;
+    public static final int DEFAULT_MESSAGE_TYPE = 0;
+    public static final int APP_INIT_CHAT_SERVICE = 9000;
+    public static final int APP_LOGIN_SUCESS = 9001;
 
     public static final int CLT_HEART_BEAT = 1;
     public static final int CLT_LOGIN = 10;

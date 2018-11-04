@@ -24,7 +24,7 @@ public class MessageDao extends AbstractDao<Message, Void> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Id = new Property(0, Long.class, "id", false, "id");
+        public final static Property Id = new Property(0, Long.class, "id", false, "ID");
         public final static Property UserSend = new Property(1, Long.class, "userSend", false, "user_send");
         public final static Property UserRecv = new Property(2, Long.class, "userRecv", false, "user_recv");
         public final static Property MsgType = new Property(3, int.class, "msgType", false, "type");
@@ -45,7 +45,7 @@ public class MessageDao extends AbstractDao<Message, Void> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"MESSAGE\" (" + //
-                "\"id\" INTEGER NOT NULL ," + // 0: id
+                "\"ID\" INTEGER NOT NULL UNIQUE ," + // 0: id
                 "\"user_send\" INTEGER," + // 1: userSend
                 "\"user_recv\" INTEGER," + // 2: userRecv
                 "\"type\" INTEGER NOT NULL ," + // 3: msgType

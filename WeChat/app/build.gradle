@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.android.xjtu.wechat"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -16,8 +16,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    greendao{
-        schemaVersion 2
+    greendao {
+        schemaVersion 4
         daoPackage 'com.android.xjtu.wechat.greendao'
         targetGenDir 'src/main/java'
     }
@@ -31,5 +31,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     // https://mvnrepository.com/artifact/org.greenrobot/greendao
     compile group: 'org.greenrobot', name: 'greendao', version: '3.2.2'
-
+    api group: 'com.android.support', name: 'recyclerview-v7', version: '26.1.0'
+    implementation files('libs/pinyin4j-2.5.0.jar')
+    androidTestCompile 'junit:junit:4.12'
 }

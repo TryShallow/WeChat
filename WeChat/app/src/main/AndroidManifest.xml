@@ -16,22 +16,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.SessionActivity" />
-        <activity android:name=".activity.ChatActivity" />
+        <activity android:name=".activity.ChatActivity" android:parentActivityName=".activity.SlideActivity"/>
         <activity android:name=".activity.ContactActivity" />
         <activity android:name=".activity.FriendsCircleActivity" />
         <activity android:name=".activity.LoginActivity">
+
+        </activity>
+        <activity android:name=".activity.SlideActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <service
             android:name=".service.ChatService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
+        <activity android:name=".activity.MeActivity"></activity>
     </application>
 
 </manifest>

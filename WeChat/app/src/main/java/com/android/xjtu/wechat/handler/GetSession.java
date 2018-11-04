@@ -1,5 +1,7 @@
 package com.android.xjtu.wechat.handler;
 
+import android.util.Log;
+
 import com.android.xjtu.wechat.dao.Session;
 import com.android.xjtu.wechat.service.ChatService;
 import com.android.xjtu.wechat.service.Constant;
@@ -23,15 +25,17 @@ public class GetSession extends BaseHandler {
     public void handle(JSONObject jsonObject) {
         try {
             int count = jsonObject.getInt(Constant.KEY_COUNTER);
-            if (count <= 0)
+            Log.i("session", "server reture session count " + count);
+            if (count <= 0) {
                 return ;
-            chatService.sendLocalBroadcast(jsonObject.toString());
+            }
             List<Session> sessions = new ArrayList<>();
             JSONArray jsonArray = jsonObject.getJSONArray(Constant.KEY_SESSIONS);
             for (int i = 0; i < count; i ++) {
                 sessions.add(new Session(jsonArray.getJSONObject(i)));
             }
             chatService.storeSessions(sessions);
+            chatService.sendLocalBroadcast(jsonObject.toString(), Constant.RSP_GET_SESSION);
         } catch (Exception e) {
             e.printStackTrace();
         }

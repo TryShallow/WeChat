@@ -1,5 +1,7 @@
 package com.android.xjtu.wechat.handler;
 
+import android.util.Log;
+
 import com.android.xjtu.wechat.service.ChatService;
 import com.android.xjtu.wechat.service.Constant;
 
@@ -27,6 +29,7 @@ public class MsgHandler {
 
     public void handle(JSONObject jsonObject) {
         try {
+            Log.i("msghandle", jsonObject.toString());
             int method = jsonObject.getInt(Constant.KEY_METHOD);
             mapHandler.get(method).handle(jsonObject);
         } catch (Exception e) {

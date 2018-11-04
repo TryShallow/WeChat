@@ -42,9 +42,10 @@ public class ChatService extends Service {
         return new ChatBinder(this);
     }
 
-    public void sendLocalBroadcast(String content) {
+    public void sendLocalBroadcast(String content, int method) {
         Intent intent = new Intent(Constant.LOCAL_BROADCAST);
         intent.putExtra(Constant.BROADCAST_DATA, content);
+        intent.putExtra(Constant.KEY_METHOD, method);
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
     public void execute(JSONObject jsonObject) {
@@ -56,8 +57,16 @@ public class ChatService extends Service {
     }
 
     public List<Session> getLocalSessions() {
-        List<Session> sessions = dbHelper.getSessions();
+        List<Session> sessions = dbHelper.getSessions(cacheInfo.getUserId());
         return sessions;
+    }
+
+    public List<Friend> getLocalFriends() {
+        return dbHelper.getFriends(cacheInfo.getUserId());
+    }
+
+    public List<Message> getLocalMessages(long userId, long userIdTo) {
+        return dbHelper.getMessages(userId, userIdTo);
     }
 
     public void storeSessions(List<Session> sessions) {

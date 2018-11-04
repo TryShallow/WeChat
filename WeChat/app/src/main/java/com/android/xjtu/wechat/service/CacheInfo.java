@@ -5,9 +5,30 @@ package com.android.xjtu.wechat.service;
  */
 
 public class CacheInfo {
-    private int userId = 0;
-    private int maxSessionId = 0;
-    private int maxMessageId = 0;
+    private int userId = 1;
+    private long maxSessionId = 0;
+    private long maxMessageId = 0;
+    private long maxFriendId = 0;
+
+    public long getMaxSessionId() {
+        return maxSessionId;
+    }
+
+    public void setMaxSessionId(long maxSessionId) {
+        if (maxSessionId < this.maxSessionId)
+            return ;
+        this.maxSessionId = maxSessionId;
+    }
+
+    public long getMaxMessageId() {
+        return maxMessageId;
+    }
+
+    public void setMaxMessageId(long maxMessageId) {
+        if (maxMessageId < this.maxMessageId)
+            return ;
+        this.maxMessageId = maxMessageId;
+    }
 
     public int getUserId() {
         return userId;
@@ -17,21 +38,13 @@ public class CacheInfo {
         this.userId = userId;
     }
 
-    public int getMaxSessionId() {
-        return maxSessionId;
+    public long getMaxFriendId() {
+        return maxFriendId;
     }
 
-    public void setMaxSessionId(int maxSessionId) {
-        if (maxSessionId <= this.maxSessionId)
-            return ;
-        this.maxSessionId = maxSessionId;
-    }
-
-    public int getMaxMessageId() {
-        return maxMessageId;
-    }
-
-    public void setMaxMessageId(int maxMessageId) {
-        this.maxMessageId = maxMessageId;
+    public void setMaxFriendId(long maxFriendId) {
+        if (maxFriendId < this.maxFriendId)
+            return;
+        this.maxFriendId = maxFriendId;
     }
 }

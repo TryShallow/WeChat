@@ -4,6 +4,7 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Unique;
 import org.greenrobot.greendao.query.WhereCondition;
 import org.json.JSONObject;
 
@@ -16,6 +17,7 @@ import java.sql.Timestamp;
 @Entity
 public class Friend {
     @NotNull
+    @Unique
     private long id;
 
     @Property(nameInDb = "user_id")
@@ -99,5 +101,9 @@ public class Friend {
 
     public void setCreateTime(long createTime) {
         this.createTime = createTime;
+    }
+
+    public String toString() {
+        return "" + id + "," + userId + "," + userFriend + "," + addFlag + "," + createTime;
     }
 }

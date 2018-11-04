@@ -92,9 +92,9 @@ class MsgHandler:
         if connRecv == const_value.DEFAULT:
             return
         rspRecv = {}
-        rspSend[const_value.KEY_METHOD] = const_value.RSP_SEND_MSG
-        rspSend[const_value.KEY_USER_ID] = userIdTo
-        rspSend[const_value.KEY_SESSION_ID] = lastRecv
+        rspRecv[const_value.KEY_METHOD] = const_value.RSP_SEND_MSG
+        rspRecv[const_value.KEY_USER_ID] = userIdTo
+        rspRecv[const_value.KEY_SESSION_ID] = lastRecv
         self.rspMsg(rspRecv, connRecv)
 
     '''

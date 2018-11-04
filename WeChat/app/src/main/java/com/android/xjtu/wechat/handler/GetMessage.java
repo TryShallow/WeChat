@@ -26,12 +26,18 @@ public class GetMessage extends BaseHandler {
             int count = jsonObject.getInt(Constant.KEY_COUNTER);
             if (count <= 0)
                 return ;
-            chatService.sendLocalBroadcast(jsonObject.toString());
+            chatService.sendLocalBroadcast(jsonObject.toString(), Constant.RSP_GET_MSG);
             List<Message> messages = new ArrayList<>();
             JSONArray jsonArray = jsonObject.getJSONArray(Constant.KEY_MESSAGES);
+            long maxId = 0;
             for (int i = 0; i < count; i ++) {
-                messages.add(new Message(jsonArray.getJSONObject(i)));
+                Message message = new Message(jsonArray.getJSONObject(i));
+                messages.add(message);
+                if (maxId < message.getId()) {
+                    maxId = message.getId();
+                }
             }
+            chatService.getCacheInfo().setMaxMessageId(maxId);
             chatService.storeMessages(messages);
         } catch (Exception e) {
             e.printStackTrace();

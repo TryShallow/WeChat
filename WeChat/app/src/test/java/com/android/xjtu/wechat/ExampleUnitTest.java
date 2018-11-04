@@ -3,6 +3,7 @@ package com.android.xjtu.wechat;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.android.xjtu.wechat.dao.DbHelper;
 import com.android.xjtu.wechat.dao.Message;
 import com.android.xjtu.wechat.greendao.DaoMaster;
 import com.android.xjtu.wechat.greendao.DaoSession;
@@ -27,18 +28,21 @@ public class ExampleUnitTest {
 //    }
     @Test
     public void testDb() throws Exception {
-        DaoMaster.DevOpenHelper dbHelper = new DaoMaster.DevOpenHelper(null, "wechat.db", null);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        DaoMaster daoMaster = new DaoMaster(db);
-        DaoSession daoSession = daoMaster.newSession();
+//        DaoMaster.DevOpenHelper dbHelper = new DaoMaster.DevOpenHelper(null, "wechat.db", null);
+//        SQLiteDatabase db = dbHelper.getWritableDatabase();
+//        DaoMaster daoMaster = new DaoMaster(db);
+//        DaoSession daoSession = daoMaster.newSession();
+//
+//        MessageDao messageDao = daoSession.getMessageDao();
+//        Message message = new Message();
+//        message.setUserSend(1L);
+//        message.setUserRecv(2L);
+//        message.setMsgType(0);
+//        message.setContent("greendao");
+//        message.setCreateTime(System.currentTimeMillis());
+//        messageDao.insert(message);
+        DbHelper dbHelper = new DbHelper();
+        dbHelper.initDb(null);
 
-        MessageDao messageDao = daoSession.getMessageDao();
-        Message message = new Message();
-        message.setUserSend(1L);
-        message.setUserRecv(2L);
-        message.setMsgType(0);
-        message.setContent("greendao");
-        message.setCreateTime(System.currentTimeMillis());
-        messageDao.insert(message);
     }
 }
